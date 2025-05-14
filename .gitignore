@@ -151,3 +151,6 @@ dmypy.json
 # For manim
 /videos
 /custom_config.yml
+
+# Audio files and TTS output
+/tts_output
