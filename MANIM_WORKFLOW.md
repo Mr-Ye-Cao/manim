@@ -107,9 +107,70 @@ python manim_idea_generator.py --topic "black holes" --num-ideas 3 --all
 # View the resulting JSON file in the idea_outputs directory
 ```
 
+## Step 3: Manim Implementation
+
+The `manim_implementer.py` script handles the third step of the workflow:
+
+### Prerequisites
+
+- Python 3.7+
+- OpenAI API key
+- Manim installed and configured
+- Required packages:
+  ```
+  pip install openai
+  ```
+
+### Environment Setup
+
+Use the same environment setup as in Step 1-2. Make sure your OpenAI API key is set:
+```
+source .env
+```
+
+### Usage
+
+```bash
+python manim_implementer.py [--file FILE_PATH] [--ids IDEA_IDS]
+```
+
+Options:
+- `--file FILE_PATH`: Path to the idea JSON file generated in Step 1-2
+- `--ids IDEA_IDS`: Comma-separated list of idea IDs to implement (e.g., "1,3,5")
+
+If you don't provide command-line arguments, the script will run in interactive mode, allowing you to select a file and the ideas to implement.
+
+### Workflow
+
+1. The script loads visualization plans from the JSON file generated in Step 1-2
+2. For each selected idea, it:
+   - Generates Manim code based on the visualization plan
+   - Saves the code to a file in the `manim_code` directory
+   - Executes the code to render a video
+   - If errors occur, it automatically debugs and fixes the code
+   - Repeats the process until successful or maximum attempts reached
+3. Finally, it provides a summary of implementation results
+
+### Output
+
+The implementation agent produces:
+- Manim code files in the `manim_code` directory
+- Rendered videos in the appropriate directory (usually `videos` or `media`)
+
+The agent will attempt to fix errors automatically, making multiple attempts if needed.
+
+### Running a Sample Implementation
+
+```bash
+# Interactive mode
+python manim_implementer.py
+
+# Non-interactive mode with specific file and ideas
+python manim_implementer.py --file idea_outputs/black_holes_20250518_123456.json --ids 1,2
+```
+
 ## Future Development
 
 The next scripts in the pipeline will be:
-- `manim_implementer.py`: Converts visualization plans into Manim code
 - `voice_script_generator.py`: Creates voice scripts based on animations
 - `video_production.py`: Manages the entire end-to-end process

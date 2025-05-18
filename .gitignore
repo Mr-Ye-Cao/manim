@@ -164,3 +164,5 @@ secrets.txt
 
 # Generated outputs from our pipeline
 /idea_outputs
+/manim_code
+/manim_outputs
