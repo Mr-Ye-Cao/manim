@@ -154,3 +154,13 @@ dmypy.json
 
 # Audio files and TTS output
 /tts_output
+
+# Environment variables and secrets
+.env
+.env.*
+.envrc
+*.key
+secrets.txt
+
+# Generated outputs from our pipeline
+/idea_outputs
