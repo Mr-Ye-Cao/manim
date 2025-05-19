@@ -40,7 +40,13 @@ def setup_openai_client():
         print("  export OPENAI_API_KEY=\"your-api-key\"")
         sys.exit(1)
     
-    return OpenAI(api_key=api_key)
+    try:
+        client = OpenAI(api_key=api_key)
+        return client
+    except Exception as e:
+        print(f"Error initializing OpenAI client: {e}")
+        print("Make sure your API key is correct and properly formatted.")
+        sys.exit(1)
 
 def generate_ideas(client, topic, num_ideas=5):
     """
